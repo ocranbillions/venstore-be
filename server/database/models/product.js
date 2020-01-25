@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     price: {
-      type: DataTypes.DOUBLE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     category: {
@@ -25,8 +25,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    sku: {
+      unique: true,
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {});
-
+  
   Product.associate = function(models) {
     // associations can be defined here
   };
