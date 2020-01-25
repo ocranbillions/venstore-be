@@ -97,7 +97,7 @@ export const updateProduct = async (req, res, next) => {
             price,
             category,
             image,
-            color
+            color,
         } = req.body;
         const id = req.params.id;
 
