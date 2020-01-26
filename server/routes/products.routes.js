@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { validateProduct } from '../middleware/validateProduct'
+import imageParser from '../middleware/imageUpload';
 import * as productController from '../controllers/products.controller';
 
 const {
@@ -12,7 +13,7 @@ const {
 
 const router = Router();
 
-router.post('/', validateProduct, createProduct);
+router.post('/', validateProduct, imageParser.single("image"), createProduct);
 router.get('/', fetchAllProducts);
 router.get('/:id', fetchSingleProduct);
 router.patch('/:id', updateProduct);

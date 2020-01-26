@@ -7,10 +7,22 @@ export const createProduct = async (req, res, next) => {
             description,
             price,
             category,
-            image,
             color,
             sku
         } = req.body;
+
+        const image = req.file.url;
+
+        // console.log('we got here')
+
+        // const name  = "product_name";
+        // const description = "product_description";
+        // const price = 6445.6
+        // const category = "product_category";
+        // const image = req.file.url;
+        // const color = "red";
+        // const sku = "1LXJ";
+
 
         const productExist = await Product.findOne({ where: { sku } });
         if(productExist) {
