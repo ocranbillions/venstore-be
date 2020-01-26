@@ -19,14 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     color: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    sku: {
-      unique: true,
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -17,20 +17,10 @@ export const validateProduct = [
         .not()
         .isEmpty({ ignore_whitespace: true })
         .withMessage('Select a category'),
-    check('image')
-        .not()
-        .isEmpty({ ignore_whitespace: true })
-        .withMessage('Kindly upload an image for this product'),
     check('color')
         .not()
         .isEmpty({ ignore_whitespace: true })
         .withMessage('Provide the color of the product'),
-    check('sku')
-        .not()
-        .isEmpty({ ignore_whitespace: true })
-        .withMessage('Provide an SKU Number')
-        .isLength({ min: 3 })
-        .withMessage('SKU Number should be a minimum of 3 letters'),
     (req, res, next) => {
         const errors = validationResult(req);
         const errorMessages = [];

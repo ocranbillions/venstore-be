@@ -8,28 +8,10 @@ export const createProduct = async (req, res, next) => {
             price,
             category,
             color,
-            sku
         } = req.body;
 
-        const image = req.file.url;
-
-        // console.log('we got here')
-
-        // const name  = "product_name";
-        // const description = "product_description";
-        // const price = 6445.6
-        // const category = "product_category";
         // const image = req.file.url;
-        // const color = "red";
-        // const sku = "1LXJ";
-
-
-        const productExist = await Product.findOne({ where: { sku } });
-        if(productExist) {
-            return res.status(409).json({
-                'message': 'The product with the given SKU number already exits.'
-            });
-        }
+        const image = "image_url";
 
         const product = await Product.create({
             name,
@@ -37,8 +19,7 @@ export const createProduct = async (req, res, next) => {
             price,
             category,
             image,
-            color,
-            sku
+            color
         });
 
         return res.status(201).json({
@@ -57,7 +38,7 @@ export const fetchAllProducts = async (req, res, next) => {
                 'name',
                 'price',
             ],
-            order: [['createdAt', 'ASC']]
+            order: [['createdAt', 'DESC']]
         });
       
         return res.status(200).json({
