@@ -30,6 +30,7 @@ export const createProduct = async (req, res, next) => {
 };
 
 
+
 export const fetchAllProducts = async (req, res, next) => {
     try {
         const products = await Product.findAll({
