@@ -23,7 +23,7 @@ server.use((error, req, res, next) => {
     }
 
     return res.status(500).json({
-        message: 'Oops! something terrible happened. Try again.',
+        message: 'There was an error on the server. Please try again.',
     });
  });
  

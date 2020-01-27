@@ -1,5 +1,6 @@
 import { Product } from '../database/models';
 
+// Adds new product
 export const createProduct = async (req, res, next) => {
     try {
         const {
@@ -10,8 +11,13 @@ export const createProduct = async (req, res, next) => {
             color,
         } = req.body;
 
-        // const image = req.file.url;
-        const image = "image_url";
+        // Set default image if error on image upload
+        let image;
+        if(req.file) {
+            image = req.file.url;
+        } else {
+            image = 'https://via.placeholder.com/250/FF0000/FFFFFF?Text=Down.com';
+        }
 
         const product = await Product.create({
             name,
@@ -30,7 +36,7 @@ export const createProduct = async (req, res, next) => {
 };
 
 
-
+// Fetch all products, returning minimal information on each
 export const fetchAllProducts = async (req, res, next) => {
     try {
         const products = await Product.findAll({
@@ -50,7 +56,7 @@ export const fetchAllProducts = async (req, res, next) => {
 };
 
 
-
+// Fetch a product and return full details
 export const fetchSingleProduct = async (req, res, next) => {
     try {
         const id = req.params.id;
@@ -82,7 +88,7 @@ export const fetchSingleProduct = async (req, res, next) => {
 };
 
 
-
+// Search db for product with the given Id and update it
 export const updateProduct = async (req, res, next) => {
     try {
         const {
@@ -110,12 +116,15 @@ export const updateProduct = async (req, res, next) => {
             }
         );
       
+        // Product.update returns an array of productS with given id
+        // Index 0 is the count of all products with given id
         if (products[0] === 0) {
             return res.status(404).json({
                 message: 'The product with the given Id was not found.'
             });
         }
 
+        // Index 1 is the only product found, since IDs are unique
         const product = products[1][0].dataValues;
         return res.status(200).json({
             data: { product }
@@ -125,7 +134,7 @@ export const updateProduct = async (req, res, next) => {
 };
 
 
-
+// Deletes a product from the database
 export const deleteProduct = async (req, res, next) => {
     try {
         const id = req.params.id;
