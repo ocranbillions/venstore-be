@@ -16,7 +16,7 @@ export const createProduct = async (req, res, next) => {
         if(req.file) {
             image = req.file.url;
         } else {
-            image = 'https://via.placeholder.com/250/FF0000/FFFFFF?Text=Down.com';
+            image = 'https://placeimg.com/640/480/people?t=1580135902349';
         }
 
         const product = await Product.create({
@@ -44,6 +44,7 @@ export const fetchAllProducts = async (req, res, next) => {
                 'id',
                 'name',
                 'price',
+                'image',
             ],
             order: [['createdAt', 'DESC']]
         });
@@ -151,4 +152,3 @@ export const deleteProduct = async (req, res, next) => {
 
     } catch (error) { next(error); }
 };
-

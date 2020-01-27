@@ -15,7 +15,7 @@ const storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: "venstore",
     allowedFormats: ["jpg", "png"],
-    transformation: [{ width: 500, height: 500, crop: "limit" }]
+    transformation: [{ width: 300, height: 400, crop: "limit" }]
 });
 
 const parser = multer({ storage: storage });
