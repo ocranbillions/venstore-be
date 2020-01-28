@@ -152,3 +152,25 @@ export const deleteProduct = async (req, res, next) => {
 
     } catch (error) { next(error); }
 };
+
+// Fetch products by category
+export const fetchProductsByCategory = async (req, res, next) => {
+    try {
+        const category = req.params.category;
+
+        const products = await Product.findAll({
+            where: { category },
+            attributes: [
+                'id',
+                'name',
+                'price',
+                'image',
+            ],
+        });
+
+        return res.status(200).json({
+            data: { products }
+        });
+
+    } catch (error) { next(error); }
+};

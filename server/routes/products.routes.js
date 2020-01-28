@@ -9,12 +9,14 @@ const {
     fetchSingleProduct,
     updateProduct,
     deleteProduct,
+    fetchProductsByCategory,
 } = productController;
 
 const router = Router();
 
 router.post('/', imageParser.single("image"), validateProduct, createProduct);
 router.get('/', fetchAllProducts);
+router.get('/categories/:category', fetchProductsByCategory);
 router.get('/:id', fetchSingleProduct);
 router.patch('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
