@@ -7,6 +7,8 @@
     "dev": "nodemon --exec babel-node server/index.js",
     "start": "node build/index.js",
     "migrate": "node_modules/.bin/sequelize db:migrate",
+    "seed": "node_modules/.bin/sequelize db:seed:all",
+    "reset:db": "npm run migrate:undo && npm run migrate && npm run seed",
     "migrate:undo": "node_modules/.bin/sequelize db:migrate:undo:all",
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel -d ./build ./server",
