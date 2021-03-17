@@ -21,7 +21,7 @@ server.use((error, req, res, next) => {
     if (process.env.NODE_ENV !== 'production') {
         console.log(error.stack);
     }
-
+    console.log(error.message, "err-log")
     return res.status(500).json({
         message: 'There was an error on the server. Please try again.',
     });
